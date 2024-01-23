@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Uploaded</title>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+</head>
+<body>
+    <div>
+        <h1>File Uploaded Successfully</h1>
+        <pre>{{ extracted_text }}</pre>
+    </div>
+
+    <div class="popup-container">
+        <button class="popup-button" onclick="togglePopup()">hide</button>
+        <div id="confirmationPopup" class="popup">
+            <form action="{% url 'clean_text' %}" method="post">
+                {% csrf_token %}
+                <p>Do you want to clear the text?</p>
+                <button id="yes_button" type="submit">Yes</button>
+                <button id="yes_button" type="button" onclick="hidePopup()">No</button>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <form action="{% url 'apply_model' %}" method="post">
+            {% csrf_token %}
+            <button id="model_button" type="submit">Apply Model</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePopup() {
+            var popup = document.getElementById("confirmationPopup");
+            popup.style.display = (popup.style.display === "none") ? "block" : "none";
+        }
+        function hidePopup() {
+            var popupContainer = document.querySelector(".popup-container");
+            popupContainer.style.display = "none";
+        }
+    </script>
+</body>
+</html>

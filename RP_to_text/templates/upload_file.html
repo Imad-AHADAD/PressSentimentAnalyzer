@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion de la revue de presse</title>
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <div id="container">
+        <h1>Choisir une revue de presse</h1>
+        <h1 class="page-title">Gestion de la revue de presse</h1>
+        <div id="formContainer">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="file" id="fileInput" required>
+                <button type="submit">Télécharger</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
